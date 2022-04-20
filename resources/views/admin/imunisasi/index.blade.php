@@ -18,19 +18,25 @@
     <thead>
         <tr>
             <th>No</th>
+            <th>Nama Balita</th>
             <th>Tgl imunisasi</th>
             <th>Umur sekarang</th>
             <th>Keterangan</th>
-            <th>Jenis</th>
             <th colspan="2" class="text-center">AKSI</th>
         </tr>
         @foreach($imunisasi as $imu)
         <tr>
           <td>{{ $imu->id_imunisasi}}</td>
+          <td>
+            @if($imu->nama_balita == '')
+              No Name
+            @endif
+            {{ $imu->nama_balita}}
+          </td>
           <td>{{ $imu->tgl_imunisasi }}</td>
           <td>{{ $imu->umur_skr }}</td>
           <td>{{ $imu->ket }}</td>
-          <td>{{ $imu->jenis_id }}</td>
+          <!-- <td>{{ $imu->jenis_id }}</td> -->
           <td class="text-center"><a class="material-icons text-white bg-primary rounded p-1" href="{{ route('admin.imunisasi.edit', $imu->id_imunisasi) }}">mode</a></td>
           <td class="text-center">
             <form action="{{ route('admin.imunisasi.destroy', $imu->id_imunisasi) }}" method="POST" onsubmit="return confirm('Yakin hapus data ?');">

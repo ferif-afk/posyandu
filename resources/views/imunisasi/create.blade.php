@@ -10,9 +10,12 @@
         @csrf
         <label for="tgl_imunisasi">Tanggal Imunisasi</label>
         <input type="date" class="col-6 rounded border-info" name="tgl_imunisasi">
+
+        <label for="nama_balita">Nama Balita</label>
+        <input type="text" name="nama_balita" class="col-6 rounded border-info" required>
     
         <label for="umur_skr">Umur Saat Ini</label>
-        <input type="text" class="col-6 rounded border-info" name="umur_skr">
+        <input type="text" class="col-6 rounded border-info" name="umur_skr" required>
     
         <label for="keterangan">Keterangan</label>
         <select name="keterangan" class="col-6 rounded border-info" required>
@@ -21,7 +24,7 @@
         </select>
     
         <div class="d-flex justify-content-center mt-4">
-            <button class="col-4 bg-primary text-white font-weight-bold rounded border-0">Simpan Perubahan</button>
+            <button class="col-4 bg-success text-white font-weight-bold rounded border-0">Simpan Data</button>
         </div>
     </form>
 

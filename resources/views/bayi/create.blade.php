@@ -26,6 +26,9 @@
         <label for="panjang_lahir">Panjang Lahir</label>
         <input type="text" class="col-6 rounded border-info" name="panjang_lahir">
 
+        <label for="lingkar_kepala">Lingkar Kepala</label>
+        <input type="text" class="col-6 rounded border-info" name="lingkar_kepala" required>
+
         <label for="anak_ke">Anak Ke</label>
         <input type="text" class="col-6 rounded border-info" name="anak_ke">
 

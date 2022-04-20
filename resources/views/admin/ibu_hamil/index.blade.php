@@ -18,9 +18,11 @@
   <thead>
     <tr>
       <th>No</th>
+      <th>NIK</th>
       <th>Nama Bumil</th>
       <th>tgl Lahir</th>
       <th>Gol Darah</th>
+      <th>Kehamilan Ke</th>
       <th>Pekerjaan</th>
       <th>Alamat</th>
       <th>No Telp</th>
@@ -32,9 +34,16 @@
     @foreach($ibu_hamil as $bumil)
     <tr>
         <td>{{ $bumil->id_bumil}}</td>
+        <td>
+          @if($bumil->nik == '')
+            <span class="text-danger">No NIK<span>
+          @endif
+          {{ $bumil->nik }}
+        </td>
         <td>{{ $bumil->nama_bumil }}</td>
         <td>{{ $bumil->tgl_lahir }}</td>
         <td>{{ $bumil->gol_darah }}</td>
+        <td>{{ $bumil->urutan_kehamilan }}</td>
         <td>{{ $bumil->pekerjaan }}</td>
         <td>{{ $bumil->alamat }}</td>
         <td>{{ $bumil->no_telp }}</td>

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Penimbangan extends Model
@@ -10,7 +9,7 @@ class Penimbangan extends Model
     protected $primaryKey = 'id_timbang';
 
     protected $table = 'penimbangan';
-    protected $fillable = ['tgl_lahir', 'hasil_timbang', 'tinggi_badan', 'status', ];
+    protected $fillable = ['nama_balita', 'tgl_lahir', 'hasil_timbang', 'tinggi_badan', 'status', 'bayi_id'];
 
     public $timestamps = false;
 }

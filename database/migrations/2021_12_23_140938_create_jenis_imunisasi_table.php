@@ -4,8 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class JenisImunisasi extends Migration
+class CreateJenisImunisasiTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('jenis_imunisasi', function (Blueprint $table) {
@@ -15,16 +20,14 @@ class JenisImunisasi extends Migration
             $table->timestamps();
         });
     }
-   
 
-
-/**
- * Reverse the migrations.
- *
- * @return void
- */
-public function down()
-{
-    Schema::dropIfExists('jenis_imunisasi');
-}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('jenis_imunisasi');
+    }
 }

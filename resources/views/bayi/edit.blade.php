@@ -32,11 +32,14 @@
     <label for="panjang_lahir">Panjang Lahir</label>
     <input type="text" class="col-6 rounded border-info" name="panjang_lahir" value="{{ $babies->panjang_lahir }}">
 
+    <label for="lingkar_kepala">Panjang Lahir</label>
+    <input type="text" class="col-6 rounded border-info" name="lingkar_kepala" value="{{ $babies->lingkar_kepala }}">
+
     <label for="anak_ke">Anak Ke</label>
     <input type="text" class="col-6 rounded border-info" name="anak_ke" value="{{ $babies->anak_ke }}">
 
     <div class="d-flex justify-content-center mt-4">
-        <button class="col-4 bg-success text-white font-weight-bold rounded border-0">Simpan Data</button>
+        <button class="col-4 bg-primary text-white font-weight-bold rounded border-0">Simpan Perubahan</button>
     </div>
 </form>
 

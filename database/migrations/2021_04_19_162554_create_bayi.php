@@ -20,11 +20,10 @@ class CreateBayi extends Migration
             $table->string('jenis_kelamin',50);
             $table->string('berat_lahir',150);
             $table->string('panjang_lahir',150);
+            $table->string('lingkar_kepala');
             $table->string('anak_ke',10);
-            $table->bigInteger('timbang_id')->unsigned()->nullable();
 
             $table->timestamps();
-            $table->foreign('timbang_id')->references('id_timbang')->on('penimbangan')->onDelete('cascade');
         });
     }
 

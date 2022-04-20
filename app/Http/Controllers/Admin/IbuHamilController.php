@@ -62,9 +62,11 @@ class IbuHamilController extends Controller
             return redirect('/');
         }
         $ibu_hamil = new IbuHamil;
+        $ibu_hamil->nik = $request->nik;
         $ibu_hamil->nama_bumil = $request->nama_bumil;
         $ibu_hamil->tgl_lahir = $request->tgl_lahir;
         $ibu_hamil->gol_darah = $request->gol_darah;
+        $ibu_hamil->urutan_kehamilan = $request->urutan_kehamilan;
         $ibu_hamil->pekerjaan = $request->pekerjaan;
         $ibu_hamil->alamat = $request->alamat;
         $ibu_hamil->no_telp = $request->no_telp;
@@ -116,9 +118,11 @@ class IbuHamilController extends Controller
             return redirect('/');
         }
         $ibu_hamil = IbuHamil::findOrFail($id);
+        $ibu_hamil->nik = $request->nik;
         $ibu_hamil->nama_bumil = $request->nama_bumil;
         $ibu_hamil->tgl_lahir = $request->tgl_lahir;
         $ibu_hamil->gol_darah = $request->gol_darah;
+        $ibu_hamil->urutan_kehamilan = $request->urutan_kehamilan;
         $ibu_hamil->pekerjaan = $request->pekerjaan;
         $ibu_hamil->alamat = $request->alamat;
         $ibu_hamil->no_telp = $request->no_telp;

@@ -65,6 +65,7 @@ class BayiController extends Controller
         $bayi->jenis_kelamin = $request->jenis_kelamin;
         $bayi->berat_lahir = $request->berat_lahir;
         $bayi->panjang_lahir = $request->panjang_lahir;
+        $bayi->lingkar_kepala = $request->lingkar_kepala;
         $bayi->anak_ke = $request->anak_ke;
 
         $bayi->save();
@@ -118,6 +119,7 @@ class BayiController extends Controller
         $bayi->jenis_kelamin = $request->jenis_kelamin;
         $bayi->berat_lahir = $request->berat_lahir;
         $bayi->panjang_lahir = $request->panjang_lahir;
+        $bayi->lingkar_kepala = $request->lingkar_kepala;
         $bayi->anak_ke = $request->anak_ke;
 
         $bayi->update();

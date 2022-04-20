@@ -24,6 +24,7 @@ class ImunisasiController extends Controller
         }
         $imunisasi = Imunisasi::when($request->search, function ($query) use ($request) {
             $query->where('id_imunisasi', 'LIKE', "%{$request->search}%")
+                    ->orWhere('nama_balita', 'LIKE', "%{$request->search}%")
                     ->orWhere('tgl_imunisasi', 'LIKE', "%{$request->search}%")
                     ->orWhere('umur_skr', 'LIKE', "%{$request->search}%")
                     ->orWhere('ket', 'LIKE', "%{$request->search}%")
@@ -59,10 +60,11 @@ class ImunisasiController extends Controller
             return redirect('/');
         }
         $imunisasi = new Imunisasi;
+        $imunisasi->nama_balita = $request->nama_balita;
         $imunisasi->tgl_imunisasi = $request->tgl_imunisasi;
         $imunisasi->umur_skr = $request->umur_skr;
         $imunisasi->ket = $request->keterangan;
-        $imunisasi->jenis_id = $request->jenis_id;
+        // $imunisasi->jenis_id = $request->jenis_id;
 
         $imunisasi->save();
 
@@ -114,10 +116,11 @@ class ImunisasiController extends Controller
             return redirect('/');
         }
         $imunisasi = Imunisasi::findOrFail($id);
+        $imunisasi->nama_balita = $request['nama_balita'];
         $imunisasi->tgl_imunisasi = $request['tgl_imunisasi'];
         $imunisasi->umur_skr = $request['umur_skr'];
         $imunisasi->ket = $request['keterangan'];
-        $imunisasi->jenis_id = $request['jenis_id'];
+        // $imunisasi->jenis_id = $request['jenis_id'];
 
         $imunisasi->update();
 

@@ -48,13 +48,16 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/imunisasi/create', "App\Http\Controllers\ImunisasiController@create");
 	Route::post('/imunisasi/create', "App\Http\Controllers\ImunisasiController@store")->name('store-imunisasi');
 	Route::get('/imunisasi/edit/{id}', "App\Http\Controllers\ImunisasiController@edit")->name('edit-imunisasi');
+	Route::put('/imunisasi/edit/{id}', "App\Http\Controllers\ImunisasiController@update")->name('update-imunisasi');
+	Route::get('/imunisasi/export_excel', 'App\Http\Controllers\ImunisasiController@export_excel');
 
 	// User jenisimunisasi
 	Route::get('/jenisimunisasi',  'App\Http\Controllers\JenisImunisasiController@index')->name('jenis_imunisasi');
 	Route::get('/jenisimunisasi/create', "App\Http\Controllers\JenisImunisasiController@create");
 	Route::post('/jenisimunisasi/create', "App\Http\Controllers\JenisImunisasiController@store")->name('store-jenisimunisasi');
 	Route::get('/jenisimunisasi/edit/{id}', "App\Http\Controllers\JenisImunisasiController@edit")->name('edit-jenisimunisasi');
-	Route::put('/jenisimunisasi/edit/{id}', "App\Http\Controllers\JenisImunisasiController@edit")->name('update-jenisimunisasi');
+	Route::put('/jenisimunisasi/edit/{id}', "App\Http\Controllers\JenisImunisasiController@update")->name('update-jenisimunisasi');
+	Route::get('/jenisimunisasi/export_excel', 'App\Http\Controllers\JenisImunisasiController@export_excel');
 });
 
 // Route untuk admin
@@ -85,45 +88,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 	Route::get('kader/export_excel', 'App\Http\Controllers\Admin\KaderController@export_excel')->name('kader.export_excel');
 	Route::resource('kader', 'App\Http\Controllers\Admin\KaderController');
 });
-	
-	// admin ibuhamil
-	// Route::post('/admin_ibuhamil', "IbuHamilController@store");
-	// Route::get('/admin/{ibuhamil}', "IbuHamilController@show");
-	// Route::patch('/admin/{ibuhamil}', "IbuHamilController@update");
-	// Route::delete('/admin/{ibuhamil}', "IbuHamilController@destroy");
-	// Route::get('/export_excel_ibuhamil', "IbuHamilController@export_excel");
-
-	// admin bayi
-	// Route::post('/admin_bayi', "BayiController@store");
-	// Route::get('/admin/{bayi}', "BayiController@show");
-	// Route::patch('/admin/{bayi}', "BayiController@update");
-	// Route::delete('/admin/{bayi}', "BayiController@destroy");
-	// Route::get('/export_excel_bayi', "BayiController@export_excel");
-
-	// Admin penimbang
-	// Route::post('/admin_penimbang', "PenimbangController@store");
-	// Route::get('/admin/{penimbang}', "PenimbangController@show");
-	// Route::patch('/admin/{penimbang}', "PenimbangController@update");
-	// Route::delete('/admin/{penimbang}', "PenimbangController@destroy");
-	// Route::get('/export_excel_penimbang', "PenimbangController@export_excel");
-
-	// Admin imunisasi
-	// Route::post('/admin_imunisasi', "ImunisasiController@store");
-	// Route::get('/admin/{imunisasi}', "ImunisasiController@show");
-	// Route::patch('/admin/{imunisasi}', "ImunisasiController@update");
-	// Route::delete('/admin/{imunisasi}', "ImunisasiController@destroy");
-	// Route::get('/export_excel_imunisasi', "ImunisasiController@export_excel");
-
-	// Admin jenisimunisasi
-	// Route::post('/admin_jenisimunisasi', "JenisImunisasiController@store");
-	// Route::get('/admin/{jenisimunisasi}', "JenisImunisasiController@show");
-	// Route::patch('/admin/{jenisimunisasi}', "JenisImunisasiController@update");
-	// Route::delete('/admin/{jenisimunisasi}', "JenisImunisasiController@destroy");
-	// Route::get('/export_excel_jenisimunisasi', "JenisImunisasiController@export_excel");
-
-	// admin kader
-	// Route::post('/admin_kader', "KaderController@store");
-	// Route::get('/admin/{kader}', "KaderController@show");
-	// Route::patch('/admin/{kader}', "KaderController@update");
-	// Route::delete('/admin/{kader}', "KaderController@destroy");
-	// Route::get('/export_excel_kader', "KaderController@export_excel");

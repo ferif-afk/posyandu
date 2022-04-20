@@ -8,11 +8,8 @@
     <h3>Create Page | Penimbang</h1>
     <form action="{{ route('store-timbang') }}" class="d-flex flex-column" method="POST">
         @csrf
-        <label for="id_timbang">ID (Latest ID : {{ $getIdTimbang->id_timbang }})</label>
-        <input type="text" class="col-6 rounded border-info" name="id_timbang" required>
-
-        <label for="nama_bayi">Nama Bayi</label>
-        <input type="text" class="col-6 rounded border-info" name="nama_bayi" required>
+        <label for="nama_balita">Nama Balita</label>
+        <input type="text" class="col-6 rounded border-info" name="nama_balita" required>
 
         <label for="tgl_lahir">Tanggal Lahir</label>
         <input type="date" class="col-6 rounded border-info" name="tgl_lahir" required>

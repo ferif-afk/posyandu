@@ -9,6 +9,9 @@
     <form action="{{ route('update-bumil', $ibu_hamil->id_bumil) }}" class="d-flex flex-column" method="POST">
         @csrf
         @method('PUT')
+        <label for="nik">NIK</label>
+        <input type="text" name="nik" class="col-6 rounded border-info" value="{{ $ibu_hamil->nik }}" required>
+
         <label for="nama_bumil">Nama</label>
         <input type="text" class="col-6 rounded border-info" name="nama_bumil" value="{{ $ibu_hamil->nama_bumil }}">
     
@@ -18,6 +21,9 @@
         <label for="gol_darah">Golongan Darah</label>
         <input type="text" class="col-6 rounded border-info" name="gol_darah" value="{{ $ibu_hamil->gol_darah }}">
     
+        <label for="urutan_kehamilan">Kehamilan Ke</label>
+        <input type="text" name="urutan_kehamilan" class="col-6 rounded border-info" value="{{ $ibu_hamil->urutan_kehamilan }}" required>
+
         <label for="pekerjaan">Pekerjaan</label>
         <input type="text" class="col-6 rounded border-info" name="pekerjaan" value="{{ $ibu_hamil->pekerjaan }}">
     

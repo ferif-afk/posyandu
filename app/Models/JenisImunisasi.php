@@ -10,7 +10,7 @@ class JenisImunisasi extends Model
     protected $primaryKey = 'id_jenis';
 
     protected $table = 'jenis_imunisasi';
-    protected $fillable = ['nama_imunisasi', 'ket',];
+    protected $fillable = ['nama_balita','nama_imunisasi', 'ket',];
 
     public $timestamps = false;
 }

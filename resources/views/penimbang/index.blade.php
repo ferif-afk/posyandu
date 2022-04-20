@@ -18,6 +18,7 @@
     <thead>
         <tr>
             <th>No</th>
+            <th>Nama Balita</th>
             <th>Tgl lahir</th>
             <th>Hasil timbang</th>
             <th>Tinggi badan</th>
@@ -27,6 +28,12 @@
         @foreach($penimbangan as $pb)
         <tr>
             <td>{{ $pb->id_timbang}}</td>
+            <td>
+                @if($pb->nama_balita == '')
+                    No Name
+                @endif
+                {{ $pb->nama_balita }}
+            </td>
             <td>{{ $pb->tgl_lahir }}</td>
             <td>{{ $pb->hasil_timbang }}</td>
             <td>{{ $pb->tinggi_badan }}</td>

@@ -9,6 +9,9 @@
     <form action="{{ route('update-timbang', $penimbang->id_timbang) }}" class="d-flex flex-column" method="POST">
         @csrf
         @method('PUT')
+        <label for="nama_balita">Nama Balita</label>
+        <input type="text" class="col-6 rounded border-info" name="nama_balita" value="{{ $penimbang->nama_balita }}">
+
         <label for="tgl_lahir">Tanggal Lahir</label>
         <input type="date" class="col-6 rounded border-info" name="tgl_lahir" value="{{ $penimbang->tgl_lahir }}">
     

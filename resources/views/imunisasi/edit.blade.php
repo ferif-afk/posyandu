@@ -6,10 +6,15 @@
 @section('content')
 
     <h3>Edit Page | Imunisasi</h3>
-    <form action="#" class="d-flex flex-column">   
+    <form action="{{ route('update-imunisasi', $imunisasi['id_imunisasi']) }}" method="POST" class="d-flex flex-column">
+        @csrf
+        @method('PUT')
         <label for="tgl_imunisasi">Tanggal Imunisasi</label>
-        <input type="date" class="col-6 rounded border-info" name="nama_bumil" value="{{ $imunisasi['tgl_imunisasi'] }}">
+        <input type="date" class="col-6 rounded border-info" name="tgl_imunisasi" value="{{ $imunisasi['tgl_imunisasi'] }}">
     
+        <label for="nama_balita">Nama Balita</label>
+        <input type="text" name="nama_balita" value="{{ $imunisasi['nama_balita'] }}" class="col-6 rounded border-info">
+
         <label for="umur_skr">Umur Saat Ini</label>
         <input type="text" class="col-6 rounded border-info" name="umur_skr" value="{{ $imunisasi['umur_skr'] }}">
     

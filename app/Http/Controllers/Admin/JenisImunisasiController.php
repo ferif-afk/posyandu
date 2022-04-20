@@ -25,8 +25,9 @@ class JenisImunisasiController extends Controller
         }
         $jenisimunisasi = JenisImunisasi::when($request->search, function ($query) use ($request) {
             $query->where('id_jenis', 'LIKE', "%{$request->search}%")
+                    ->orWhere('nama_balita', 'LIKE', "%{$request->search}%")
                     ->orWhere('nama_imunisasi', 'LIKE', "%{$request->search}%")
-                    ->orWhere('ket', 'LIKE', "%{$request->search}%");;
+                    ->orWhere('ket', 'LIKE', "%{$request->search}%");
         })->simplePaginate(5);
 
         return view('admin.jenis_imunisasi.index', compact('jenisimunisasi'));
@@ -57,6 +58,7 @@ class JenisImunisasiController extends Controller
             return redirect('/');
         }
         $jenisimunisasi = new JenisImunisasi;
+        $jenisimunisasi->nama_balita = $request->nama_balita;
         $jenisimunisasi->Nama_Imunisasi = $request->nama_imunisasi;
         $jenisimunisasi->Ket = $request->keterangan;
 
@@ -106,6 +108,7 @@ class JenisImunisasiController extends Controller
             return redirect('/');
         }
         $jenisimunisasi = JenisImunisasi::findOrFail($id);
+        $jenisimunisasi->nama_balita = $request->nama_balita;
         $jenisimunisasi->nama_imunisasi = $request->nama_imunisasi;
         $jenisimunisasi->ket = $request->keterangan;
 

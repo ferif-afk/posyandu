@@ -21,6 +21,7 @@ class PenimbangController extends Controller
 
         $penimbangan = Penimbangan::when($request->search, function ($query) use ($request) {
             $query->where('id_timbang', 'LIKE', "%{$request->search}%")
+                    ->orWhere('nama_balita', 'LIKE', "%{$request->search}%")
                     ->orWhere('tgl_lahir', 'LIKE', "%{$request->search}%")
                     ->orWhere('hasil_timbang', 'LIKE', "%{$request->search}%")
                     ->orWhere('tinggi_badan', 'LIKE', "%{$request->search}%")
@@ -53,34 +54,28 @@ class PenimbangController extends Controller
     {
 
         // cek apakah bayi yg di timbang ada pada database
-        $status = Bayi::where('nama_bayi', $request->nama_bayi)->first();
+        $status = Bayi::where('nama_bayi', $request->nama_balita)->first();
         $getIdTimbang = Penimbangan::latest('id_timbang')->first();
 
         if(!$status) {
             Alert::warning('Buat Data Penimbangan', 'Nama Bayi tidak Terdaftar');
-            return view('penimbang.create', compact('getIdTimbang'));
+            return view('penimbang.create');
         }
         else {
             // -- Simpan data timbang bayi
             $penimbang = new Penimbangan;
             $id = (int)$status->id_bayi;
-            $id_timbang = $request->id_timbang;
 
-            $penimbang->id_timbang = $id_timbang;
+            $penimbang->nama_balita = $request->nama_balita;
             $penimbang->tgl_lahir = $request->tgl_lahir;
             $penimbang->hasil_timbang = $request->hasil_timbang;
             $penimbang->tinggi_badan = $request->tinggi_badan;
             $penimbang->status = $request->status;
 
-            if (Penimbangan::where('id_timbang', '=', $id_timbang)->exists()) {
-                Alert::warning('Buat Data Penimbangan', 'ID sudah terdaftar');
-                return view('penimbang.create', compact('getIdTimbang'));
-            }
-
             $penimbang->save();
 
             // -- Update tb_bayi timbang id --
-            Bayi::where('id_bayi', $id)->update(['timbang_id' => $id_timbang]);
+            Bayi::where('id_bayi', $id)->update(['timbang_id' => $penimbang->id_timbangan]);
 
             Alert::success('Buat Data Penimbangan', 'Berhasil Tambah Data');
             return redirect('/penimbang');
@@ -122,6 +117,7 @@ class PenimbangController extends Controller
     {
         // $penimbang = Penimbangan::where('id_timbang', $bayi->timbang_id)->first();
         $penimbang = Penimbangan::findOrFail($id);
+        $penimbang->nama_balita = $request['nama_balita'];
         $penimbang->tgl_lahir = $request['tgl_lahir'];
         $penimbang->hasil_timbang = $request['hasil_timbang'];
         $penimbang->tinggi_badan = $request['tinggi_badan'];

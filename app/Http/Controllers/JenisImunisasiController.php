@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\JenisImunisasi;
 use App\Models\Bayi;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Exports\JenisImunisasiExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class JenisImunisasiController extends Controller
 {
@@ -19,6 +21,7 @@ class JenisImunisasiController extends Controller
 
         $jenisimunisasi = JenisImunisasi::when($request->search, function ($query) use ($request) {
             $query->where('id_jenis', 'LIKE', "%{$request->search}%")
+                    ->orWhere('nama_balita', 'LIKE', "%{$request->search}%")
                     ->orWhere('nama_imunisasi', 'LIKE', "%{$request->search}%")
                     ->orWhere('ket', 'LIKE', "%{$request->search}%");;
         })->simplePaginate(5);
@@ -46,12 +49,14 @@ class JenisImunisasiController extends Controller
     public function store(Request $request)
     {
         $jenisimunisasi = new JenisImunisasi;
-        $jenisimunisasi->id = $request->id_jenis;
+        // $jenisimunisasi->id = $request->id_jenis;
+        $jenisimunisasi->nama_balita = $request->nama_balita;
         $jenisimunisasi->nama_imunisasi = $request->nama_imunisasi;
         $jenisimunisasi->ket = $request->keterangan;
 
         $jenisimunisasi->save();
 
+        Alert::success('Tambah Data Jenis Imunisasi', 'Berhasil Tambah Data');
         return redirect('/jenisimunisasi');
     }
 
@@ -86,16 +91,17 @@ class JenisImunisasiController extends Controller
      * @param  \App\Jenisimunisasi  $jenisimunisasi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, JenisImunisasi $jenisimunisasi)
+    public function update(Request $request, $id)
     {
-        $jenisimunisasi = JenisImunisasi::where('id', $jenisimunisasi->id)->first();
-        $jenisimunisasi->Nama_Imunisasi = $request['nama_imusasi'];
-        $jenisimunisasi->ket = $request['keterangan'];
+        $jenisimunisasi = JenisImunisasi::findOrFail($id);
+        $jenisimunisasi->nama_balita = $request->nama_balita;
+        $jenisimunisasi->nama_imunisasi = $request->nama_imunisasi;
+        $jenisimunisasi->ket = $request->keterangan;
 
-        
         $jenisimunisasi->update();
 
-        return redirect('/');
+        Alert::success('Update Data Jenis Imunisasi', 'Berhasil Update Data');
+        return redirect('/jenisimunisasi');
     }
 
     /**
@@ -113,6 +119,6 @@ class JenisImunisasiController extends Controller
 
     public function export_excel()
     {
-        // return Excel::download(new JenisImunisasiExport, 'jenisimunisasi.xlsx');
+        return Excel::download(new JenisImunisasiExport, 'jenisimunisasi.xlsx');
     }
 }

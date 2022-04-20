@@ -12,6 +12,9 @@
         <label for="tgl_imunisasi">Tanggal Imunisasi</label>
         <input type="date" class="col-6 rounded border-info" name="tgl_imunisasi" value="{{ $imunisasi['tgl_imunisasi'] }}">
     
+        <label for="nama_balita">Nama Balita</label>
+        <input type="text" name="nama_balita" value="{{ $imunisasi['nama_balita'] }}" class="col-6 rounded border-info">
+
         <label for="umur_skr">Umur Saat Ini</label>
         <input type="text" class="col-6 rounded border-info" name="umur_skr" value="{{ $imunisasi['umur_skr'] }}">
     
@@ -25,9 +28,6 @@
                 <option value="Sehat">Sehat</option>
             @endif
         </select>
-
-        <label for="jenis_id">ID Jenis Imunisasi</label>
-        <input type="text" class="col-6 rounded border-info" name="jenis_id" value="{{$imunisasi['jenis_id'] }}">
     
         <div class="d-flex justify-content-center mt-4">
             <button class="col-4 bg-primary text-white font-weight-bold rounded border-0">Simpan Perubahan</button>

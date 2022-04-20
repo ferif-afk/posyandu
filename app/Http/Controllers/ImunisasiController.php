@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Imunisasi;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Exports\ImunisasiExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImunisasiController extends Controller
 {
@@ -17,6 +20,7 @@ class ImunisasiController extends Controller
 
         $imunisasi = Imunisasi::when($request->search, function ($query) use ($request) {
             $query->where('id_imunisasi', 'LIKE', "%{$request->search}%")
+                    ->orWhere('nama_balita', 'LIKE', "%{$request->search}%")
                     ->orWhere('tgl_imunisasi', 'LIKE', "%{$request->search}%")
                     ->orWhere('umur_skr', 'LIKE', "%{$request->search}%")
                     ->orWhere('ket', 'LIKE', "%{$request->search}%")
@@ -48,6 +52,7 @@ class ImunisasiController extends Controller
     {
         $imunisasi = new Imunisasi;
         // $imunisasi->id_imunisasi = $request->id_imunisasi;
+        $imunisasi->nama_balita = $request->nama_balita;
         $imunisasi->tgl_imunisasi = $request->tgl_imunisasi;
         $imunisasi->umur_skr = $request->umur_skr;
         $imunisasi->ket = $request->keterangan;
@@ -89,15 +94,18 @@ class ImunisasiController extends Controller
      * @param  \App\Imunisasi  $imunisasi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Imunisasi $imunisasi)
+    public function update(Request $request, $id)
     {
-        $imunisasi  = Imunisasi::where('id', $imunisasi->id)->first();
+        $imunisasi = Imunisasi::findOrFail($id);
         $imunisasi->tgl_imunisasi = $request['tgl_imunisasi'];
-        $imunisasi->ket = $request['ket'];
-        $imunisasi->jenis_id = $request['jenis_id'];
+        $imunisasi->nama_balita = $request['nama_balita'];
+        $imunisasi->umur_skr = $request['umur_skr'];
+        $imunisasi->ket = $request['keterangan'];
+        // $imunisasi->jenis_id = $request['jenis_id'];
         
         $imunisasi->update();
 
+        Alert::success('Update Data Imunisasi', 'Berhasil Update Data');
         return redirect('/imunisasi');
     }
 
@@ -118,6 +126,6 @@ class ImunisasiController extends Controller
 
     public function export_excel()
     {
-        // return Excel::download(new ImunisasiExport, 'imunisasi.xlsx');
+        return Excel::download(new ImunisasiExport, 'imunisasi.xlsx');
     }
 }

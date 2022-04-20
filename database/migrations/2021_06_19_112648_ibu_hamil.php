@@ -15,9 +15,11 @@ class IbuHamil extends Migration
     {
         Schema::create('ibu_hamil', function (Blueprint $table) {
             $table->bigIncrements('id_bumil');
+            $table->string('nik');
             $table->string('nama_bumil',150);
             $table->date('tgl_lahir');
             $table->string('gol_darah',10);
+            $table->string('urutan_kehamilan');
             $table->string('pekerjaan',150);
             $table->string('alamat',150);
             $table->string('no_telp',50);

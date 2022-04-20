@@ -23,6 +23,7 @@
               <th>Jenis kelamin</th>
               <th>Berat lajir</th>
               <th>Panjang lahir</th>
+              <th>Lingkar Kepala</th>
               <th>Anak ke</th>
               <th colspan="2" class="text-center">AKSI</th>
           </tr>
@@ -34,6 +35,7 @@
               <td>{{ $by->jenis_kelamin }}</td>
               <td>{{ $by->berat_lahir }}</td>
               <td>{{ $by->panjang_lahir }}</td>
+              <td>{{ $by->lingkar_kepala }}</td>
               <td>{{ $by->anak_ke }}</td>
               <td><a class="material-icons text-white bg-primary rounded p-1" href="{{ route('admin.bayi.edit', $by->id_bayi) }}">mode</a></td>
               <td>

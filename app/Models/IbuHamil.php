@@ -10,7 +10,7 @@ class IbuHamil extends Model
     protected $primaryKey = 'id_bumil';
 
     protected $table = 'ibu_hamil';
-    protected $fillable = ['nama_bumil', 'tgl_lahir', 'gol_darah', 'pekerjaan', 'alamat', 'no_telp', 'nama_suami', 'bayi_id'];
+    protected $fillable = ['nik', 'nama_bumil', 'tgl_lahir', 'gol_darah', 'urutan_kehamilan', 'pekerjaan', 'alamat', 'no_telp', 'nama_suami', 'bayi_id'];
 
     public $timestamps = false;
 }
